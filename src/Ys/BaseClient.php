@@ -58,16 +58,17 @@ abstract class BaseClient
      * @param array $postData
      * @param string $method
      * @param bool $withToken
+     * @param bool $withHeaders
      * @return mixed
      * @throws ClientException
      */
-    protected function getHttpRequest($url, array $postData, $method = HttpMethod::POST, bool $withToken=true)
+    protected function getHttpRequest($url, array $postData, $method = HttpMethod::POST, bool $withToken=true, bool $withHeaders=true)
     {
         $url = $this->config['api'].$url;
-        $headers = $this->getHeaders();
-        $options = [
-            'headers' => $headers
-        ];
+        $options = [];
+        if($withHeaders){
+            $options['headers'] = $this->getHeaders();
+        }
         if($withToken){
             $postData['accessToken'] = $this->getCacheToken();
         }
@@ -75,10 +76,10 @@ abstract class BaseClient
             $options['form_params'] = $postData;
         }
         $res = ApiRequest::httpRequest($method, $url, $options);
-        if(!$res['success']){
+        if((int)$res['code'] !== 200){
             throw new ClientException($res['msg'], ErrorCode::CLOUD_DATA);
         }
-        $res = $res['result'];
+        $res = $res['data'];
         return $res;
     }
 }

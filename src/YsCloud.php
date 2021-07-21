@@ -3,6 +3,7 @@
 namespace IotSpace;
 
 use IotSpace\Exception\ClientException;
+use IotSpace\Ys\BaseClient;
 use IotSpace\Ys\TokenClient;
 use IotSpace\Ys\UserClient;
 

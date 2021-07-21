@@ -44,7 +44,7 @@ class TokenClient extends BaseClient
             'appSecret' => $secret
         ];
 
-        $data = $this->getHttpRequest($url, $postData, HttpMethod::POST, false);
+        $data = $this->getHttpRequest($url, $postData, HttpMethod::POST, false, false);
 
         $accessToken = $data['accessToken'];
         $expireTime = $data['expireTime']; //Token过期时间  毫秒时间戳
