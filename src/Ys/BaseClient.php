@@ -46,7 +46,8 @@ abstract class BaseClient
     {
         $headers = [
             'Host' => 'open.ys7.com',
-            'Content-Type' => 'application/x-www-form-urlencoded'
+//            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Content-Type' => 'application/json'
         ];
 
         return $headers;
@@ -77,7 +78,8 @@ abstract class BaseClient
         }
         $res = ApiRequest::httpRequest($method, $url, $options);
         if((int)$res['code'] !== 200){
-            throw new ClientException($res['msg'], ErrorCode::CLOUD_DATA);
+            $errorCode = $res['data']['errorCode'];
+            throw new ClientException($errorCode, ErrorCode::DATA);
         }
         $res = $res['data'];
         return $res;

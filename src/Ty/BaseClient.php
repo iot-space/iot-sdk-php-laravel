@@ -100,7 +100,7 @@ abstract class BaseClient
         }
         $res = ApiRequest::httpRequest($method, $url, $options);
         if(!$res['success']){
-            throw new ClientException($res['msg'], ErrorCode::CLOUD_DATA);
+            throw new ClientException($res['msg'], ErrorCode::DATA);
         }
         $res = $res['result'];
         return $res;

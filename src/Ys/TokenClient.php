@@ -22,7 +22,8 @@ class TokenClient extends BaseClient
      */
     public function getToken(): string
     {
-        $url = '/api/lapp/token/get';
+//        $url = '/api/lapp/token/get';
+        $url = '/api/user/component-open/sso/oauth2/getEZAccessToken';
 
         if (Cache::has(self::CACHE_TOKEN_KEY)) {
             $token = Cache::get(self::CACHE_TOKEN_KEY);
@@ -44,7 +45,7 @@ class TokenClient extends BaseClient
             'appSecret' => $secret
         ];
 
-        $data = $this->getHttpRequest($url, $postData, HttpMethod::POST, false, false);
+        $data = $this->getHttpRequest($url, $postData, HttpMethod::POST, false, true);
 
         $accessToken = $data['accessToken'];
         $expireTime = $data['expireTime']; //Token过期时间  毫秒时间戳

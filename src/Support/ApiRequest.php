@@ -28,7 +28,7 @@ class ApiRequest
             $res = json_decode($res, true);
             return $res;
         } catch (\Exception $ex) {
-            throw new ClientException($ex->getMessage(), ErrorCode::CLOUD_HTTP, $ex);
+            throw new ClientException($ex->getMessage(), ErrorCode::HTTP, $ex);
         }
         return false;
     }
