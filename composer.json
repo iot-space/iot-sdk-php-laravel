@@ -1,0 +1,34 @@
+{
+    "name": "iot-space/iot-sdk-php-laravel",
+    "description": "物联网智能设备SDK",
+    "homepage": "http://www.iot-space.cn",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ShiYiKui",
+            "email": "shiyikui@foxmail.com"
+        }
+    ],
+    "require": {
+        "php":">=7.0",
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "require-dev" : {
+        "phpunit/phpunit": "~4.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IotSpace\\Provider\\LaravelServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {"IotSpace\\": "src"},
+        "files": [
+            "src/Common/Functions.php"
+        ]
+    }
+}
