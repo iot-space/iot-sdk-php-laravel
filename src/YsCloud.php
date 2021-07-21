@@ -3,22 +3,15 @@
 namespace IotSpace;
 
 use IotSpace\Exception\ClientException;
+use IotSpace\Ys\TokenClient;
+use IotSpace\Ys\UserClient;
 
 
 /**
- * 涂鸦云SDK
+ * 萤石云SDK
  *
  * @method static TokenClient TokenClient()
  * @method static UserClient UserClient()
- * @method static SceneClient SceneClient()
- * @method static HomeClient HomeClient()
- * @method static DataClient DataClient()
- * @method static DeviceClient DeviceClient()
- * @method static PairTokenClient PairTokenClient()
- * @method static TimeClient TimeClient()
- * @method static WeatherClient WeatherClient()
- * @method static GeoClient GeoClient()
- * @method static SmsClient SmsClient()
  *
  * @package IotSpace
  */
@@ -42,7 +35,7 @@ class YsCloud
         /**
          * @var BaseClient
          */
-        $class = "IotSpace\\Ty\\{$name}";
+        $class = "IotSpace\\Ys\\{$name}";
 
         if (class_exists($class)) {
             return resolve($class);
