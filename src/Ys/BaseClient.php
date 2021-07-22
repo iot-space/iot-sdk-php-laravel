@@ -46,8 +46,8 @@ abstract class BaseClient
     {
         $headers = [
             'Host' => 'open.ys7.com',
-//            'Content-Type' => 'application/x-www-form-urlencoded',
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/x-www-form-urlencoded',
+//            'Content-Type' => 'application/json'
         ];
 
         return $headers;
