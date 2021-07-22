@@ -4,15 +4,19 @@ namespace IotSpace;
 
 use IotSpace\Exception\IotException;
 use IotSpace\Ys\BaseClient;
+use IotSpace\Ys\DeviceClient;
+use IotSpace\Ys\DoorClient;
+use IotSpace\Ys\PersonClient;
 use IotSpace\Ys\TokenClient;
-use IotSpace\Ys\UserClient;
 
 
 /**
  * 萤石云SDK
  *
  * @method static TokenClient TokenClient()
- * @method static UserClient UserClient()
+ * @method static PersonClient PersonClient()
+ * @method static DoorClient DoorClient()
+ * @method static DeviceClient DeviceClient()
  *
  * @package IotSpace
  */
