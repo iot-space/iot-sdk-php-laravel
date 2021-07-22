@@ -2,7 +2,7 @@
 
 namespace IotSpace;
 
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 use IotSpace\Ys\BaseClient;
 use IotSpace\Ys\TokenClient;
 use IotSpace\Ys\UserClient;
@@ -42,6 +42,6 @@ class YsCloud
             return resolve($class);
         }
 
-        throw new ClientException("{$name} Not Found.");
+        throw new IotException("{$name} Not Found.");
     }
 }

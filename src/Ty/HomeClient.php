@@ -65,7 +65,7 @@ class HomeClient extends BaseClient
      * 删除家庭
      * @param int $homeId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function deleteHome(int $homeId)
     {
@@ -80,7 +80,7 @@ class HomeClient extends BaseClient
      * 获取家庭详情
      * @param int $homeId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getHome(int $homeId)
     {
@@ -95,7 +95,7 @@ class HomeClient extends BaseClient
      * 查询家庭下全部设备列表
      * @param int $homeId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getHomeDevices(int $homeId)
     {
@@ -110,7 +110,7 @@ class HomeClient extends BaseClient
      * 查询家庭用户列表
      * @param int $homeId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getHomeMembers(int $homeId)
     {
@@ -130,7 +130,7 @@ class HomeClient extends BaseClient
      * @param bool $isAdmin
      * @param string $countryCode
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function createHomeMember(int $homeId, $schema, string $name, string $mobile, bool $isAdmin = false, string $countryCode='86')
     {
@@ -156,7 +156,7 @@ class HomeClient extends BaseClient
      * @param int $homeId
      * @param string $uid
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function deleteHomeMember(int $homeId, string $uid)
     {
@@ -173,7 +173,7 @@ class HomeClient extends BaseClient
      * @param string $uid
      * @param bool $isAdmin
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function setHomeMember(int $homeId, string $uid, bool $isAdmin)
     {

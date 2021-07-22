@@ -3,7 +3,7 @@
 namespace IotSpace\Support;
 
 use GuzzleHttp\Client;
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 use IotSpace\Exception\ErrorCode;
 
 class ApiRequest
@@ -28,7 +28,7 @@ class ApiRequest
             $res = json_decode($res, true);
             return $res;
         } catch (\Exception $ex) {
-            throw new ClientException($ex->getMessage(), ErrorCode::HTTP, $ex);
+            throw new IotException($ex->getMessage(), ErrorCode::HTTP, null, $ex);
         }
         return false;
     }

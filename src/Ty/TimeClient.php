@@ -22,7 +22,7 @@ class TimeClient extends BaseClient
      * @param string $timeZone 时区，中国区传 +08:00
      * @param string $timeZoneId 时区 ID，比如 Asia/shanghai
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function createTimer(string $deviceId, string $category, string $loops, array $instruct, string $aliasName, string $timeZone='+08:00', string $timeZoneId='Asia/shanghai')
     {
@@ -57,7 +57,7 @@ class TimeClient extends BaseClient
      * @param string $timeZone 时区，中国区传 +08:00
      * @param string $timeZoneId 时区 ID，比如 Asia/shanghai
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function editTimer(string $deviceId, string $groupId, string $category, string $loops, array $instruct, string $aliasName, string $timeZone='+08:00', string $timeZoneId='Asia/shanghai')
     {
@@ -88,7 +88,7 @@ class TimeClient extends BaseClient
      * @param string $category 定时分类
      * @param string $status 定时任务状态 0：关闭 1：开启 2：删除
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function setTimerStatus(string $deviceId, string $groupId, string $category, string $status)
     {
@@ -109,7 +109,7 @@ class TimeClient extends BaseClient
      * 查询设备下的定时任务列表
      * @param string $deviceId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getDeviceTimers(string $deviceId)
     {
@@ -125,7 +125,7 @@ class TimeClient extends BaseClient
      * @param string $deviceId
      * @param string $category
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getDeviceCategoryTimers(string $deviceId, string $category)
     {
@@ -140,7 +140,7 @@ class TimeClient extends BaseClient
      * 删除设备下的所有定时任务
      * @param string $deviceId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function deleteDeviceTimers(string $deviceId)
     {
@@ -156,7 +156,7 @@ class TimeClient extends BaseClient
      * @param string $deviceId
      * @param string $category
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function deleteDeviceCategoryTimers(string $deviceId, string $category)
     {
@@ -173,7 +173,7 @@ class TimeClient extends BaseClient
      * @param string $category
      * @param string $groupId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function deleteDeviceCategoryGroupTimers(string $deviceId, string $category, string $groupId)
     {

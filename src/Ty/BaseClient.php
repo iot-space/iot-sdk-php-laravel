@@ -4,7 +4,7 @@
 namespace IotSpace\Ty;
 
 use IotSpace\Support\ApiRequest;
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 use IotSpace\Exception\ErrorCode;
 use IotSpace\Support\HttpMethod;
 use Illuminate\Config\Repository;
@@ -49,10 +49,10 @@ abstract class BaseClient
         $clientId = $this->config['client_id'];
         $secret = $this->config['secret'];
         if(empty($clientId)){
-            throw new ClientException('缺少TY_CLIENT_ID配置', ErrorCode::OPTIONS);
+            throw new IotException('缺少TY_CLIENT_ID配置', ErrorCode::OPTIONS);
         }
         if(empty($secret)){
-            throw new ClientException('缺少TY_SECRET配置', ErrorCode::OPTIONS);
+            throw new IotException('缺少TY_SECRET配置', ErrorCode::OPTIONS);
         }
 
         if($withToken){
@@ -86,7 +86,7 @@ abstract class BaseClient
      * @param bool $withToken
      * @param null $body
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     protected function getHttpRequest($url, $method = HttpMethod::GET, bool $withToken = true, $body = null)
     {
@@ -100,7 +100,7 @@ abstract class BaseClient
         }
         $res = ApiRequest::httpRequest($method, $url, $options);
         if(!$res['success']){
-            throw new ClientException($res['msg'], ErrorCode::DATA);
+            throw new IotException($res['msg'], ErrorCode::TY, $res);
         }
         $res = $res['result'];
         return $res;

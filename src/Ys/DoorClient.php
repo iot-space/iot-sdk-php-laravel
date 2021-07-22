@@ -2,7 +2,7 @@
 
 namespace IotSpace\Ys;
 
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 
 /**
  * 云门禁
@@ -16,7 +16,7 @@ class DoorClient extends BaseClient
      * @param int $personId
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function addPerson(int $personId, string $deviceSerial)
     {
@@ -38,7 +38,7 @@ class DoorClient extends BaseClient
      * @param int $personId 用户ID(设备序列号和用户ID必填一个)
      * @param string $deviceSerial 设备序列号(设备序列号和用户ID必填一个)
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function deletePerson(int $personId, string $deviceSerial)
     {
@@ -64,7 +64,7 @@ class DoorClient extends BaseClient
      * @param string $deviceSerial
      * @param int $personId
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getPersons(int $pageNo=1, int $pageSize=10, string $deviceSerial='', int $personId=0)
     {
@@ -91,7 +91,7 @@ class DoorClient extends BaseClient
      * @param string $deviceSerial 设备序列号
      * @param string $cmd 参考DoorCmd枚举常量值
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function remoteCmd(string $deviceSerial, string $cmd)
     {
@@ -115,7 +115,7 @@ class DoorClient extends BaseClient
      * @param int $pageNo
      * @param int $pageSize
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getEvents(string $deviceSerial, string $startTime, string $endTime, int $pageNo=1, int $pageSize=10)
     {

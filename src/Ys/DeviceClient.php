@@ -2,7 +2,7 @@
 
 namespace IotSpace\Ys;
 
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 
 /**
  * 设备管理
@@ -16,7 +16,7 @@ class DeviceClient extends BaseClient
      * @param string $deviceSerial 设备序列号
      * @param string $validateCode 设备验证码
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function addDevice(string $deviceSerial, string $validateCode)
     {
@@ -37,7 +37,7 @@ class DeviceClient extends BaseClient
      * @param string $deviceSerial
      * @param string $deviceName
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function editDeviceName(string $deviceSerial, string $deviceName)
     {
@@ -57,7 +57,7 @@ class DeviceClient extends BaseClient
      * 删除设备
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function deleteDevice(string $deviceSerial)
     {
@@ -79,7 +79,7 @@ class DeviceClient extends BaseClient
      * @param string $deviceSerial
      * @param string $deviceName
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getDevices(int $pageNo=1, int $pageSize=10, string $deviceSerial='', string $deviceName='')
     {
@@ -105,7 +105,7 @@ class DeviceClient extends BaseClient
      * 获取单个设备信息
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getDevice(string $deviceSerial)
     {
@@ -124,7 +124,7 @@ class DeviceClient extends BaseClient
      * 获取单个设备在线状态
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getDeviceOnlineStatus(string $deviceSerial)
     {
@@ -138,7 +138,7 @@ class DeviceClient extends BaseClient
      * 重启设备，目前仅支持门锁网关(CS-DL-GW3)的重启。
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function rebootDevice(string $deviceSerial)
     {
@@ -158,7 +158,7 @@ class DeviceClient extends BaseClient
      * 初始化设备，目前仅支持门锁网关(CS-DL-GW3)，初始化会解除智能网关与智能锁的配对状态
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function resetDevice(string $deviceSerial)
     {
@@ -177,7 +177,7 @@ class DeviceClient extends BaseClient
      * 获取设备版本信息
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getDeviceVersion(string $deviceSerial)
     {
@@ -196,7 +196,7 @@ class DeviceClient extends BaseClient
      * 设备升级固件
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function upgradeDevice(string $deviceSerial)
     {
@@ -215,7 +215,7 @@ class DeviceClient extends BaseClient
      * 获取设备升级状态
      * @param string $deviceSerial
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getUpgradeDeviceStatus(string $deviceSerial)
     {

@@ -17,7 +17,7 @@ class SceneClient extends BaseClient
      * 查询家庭的场景列表
      * @param int $homeId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getScenes(int $homeId)
     {
@@ -33,7 +33,7 @@ class SceneClient extends BaseClient
      * @param int $homeId
      * @param string $sceneId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function executeScene(int $homeId, string $sceneId)
     {
@@ -49,7 +49,7 @@ class SceneClient extends BaseClient
      * @param int $homeId
      * @param string $sceneId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function deleteScene(int $homeId, string $sceneId)
     {
@@ -67,7 +67,7 @@ class SceneClient extends BaseClient
      * @param string $background
      * @param array $actions 结构参考：https://developer.tuya.com/cn/docs/cloud/scene-and-automatic?id=K95zu0bsi8i8s#title-32-%E6%B7%BB%E5%8A%A0%E5%9C%BA%E6%99%AF
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function createScene(int $homeId, string $name, string $background, array $actions)
     {
@@ -93,7 +93,7 @@ class SceneClient extends BaseClient
      * @param string $background
      * @param array $actions
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function editScene(int $homeId, int $sceneId, string $name, string $background, array $actions)
     {
@@ -114,7 +114,7 @@ class SceneClient extends BaseClient
      * 查询家庭下支持场景的设备列表
      * @param int $homeId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getHomeDevices(int $homeId)
     {
@@ -132,7 +132,7 @@ class SceneClient extends BaseClient
      * @param string $code
      * @param string $value
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function bindScene(int $deviceId, int $sceneId, string $code, string $value)
     {
@@ -154,7 +154,7 @@ class SceneClient extends BaseClient
      * @param int $sceneId
      * @param string $code
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function unbindScene(int $deviceId, int $sceneId, string $code)
     {
@@ -173,7 +173,7 @@ class SceneClient extends BaseClient
      * 查询设备已绑定的场景列表
      * @param int $deviceId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getDeviceScenes(int $deviceId)
     {
@@ -195,7 +195,7 @@ class SceneClient extends BaseClient
      * @param string|null $conditionRule 自定义条件规则，当匹配类型 match_type=3，该参数必填
      * @param array $preconditions 前置条件，优先级最高
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function createAutomation(int $homeId, string $name, string $background, int $matchType, array $actions, array $conditions,string $conditionRule=null, array $preconditions)
     {
@@ -233,7 +233,7 @@ class SceneClient extends BaseClient
      * @param string|null $conditionRule 自定义条件规则，当匹配类型 match_type=3，该参数必填
      * @param array $preconditions 前置条件，优先级最高
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function editAutomation(int $homeId, string $automationId, string $name, string $background, int $matchType, array $actions, array $conditions,string $conditionRule=null, array $preconditions)
     {
@@ -264,7 +264,7 @@ class SceneClient extends BaseClient
      * @param int $homeId 家庭ID
      * @param string $automationId 自动化ID
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function deleteAutomation(int $homeId, string $automationId)
     {
@@ -279,7 +279,7 @@ class SceneClient extends BaseClient
      * 查询自动化列表
      * @param int $homeId 家庭ID
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getAutomations(int $homeId)
     {
@@ -295,7 +295,7 @@ class SceneClient extends BaseClient
      * @param int $homeId 家庭ID
      * @param string $automationId 自动化ID
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getAutomation(int $homeId, string $automationId)
     {
@@ -312,7 +312,7 @@ class SceneClient extends BaseClient
      * @param string $automationId 自动化ID
      * @param array $conditions 条件列表
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function executeAutomation(int $homeId, string $automationId, array $conditions)
     {
@@ -332,7 +332,7 @@ class SceneClient extends BaseClient
      * @param int $homeId 用户家庭 ID
      * @param string|null $type 支持的类型： condition：条件类型 action：动作类型
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getAutomationDevices(int $homeId, string $type=null)
     {
@@ -349,7 +349,7 @@ class SceneClient extends BaseClient
     /**
      * 查询自动化场景支持的天气条件
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getAutomationWeather()
     {
@@ -364,7 +364,7 @@ class SceneClient extends BaseClient
      * 获取家庭支持的联动条件
      * @param int $homeId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getHomeEnableLinkageCodes(int $homeId)
     {
@@ -379,7 +379,7 @@ class SceneClient extends BaseClient
      * 获取设备支持的联动条件
      * @param string $deviceId 设备ID
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getDeviceEnableLinkageCodes(string $deviceId)
     {
@@ -395,7 +395,7 @@ class SceneClient extends BaseClient
      * @param int $homeId 家庭ID
      * @param string $automationId 自动化ID
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function enableAutomation(int $homeId, string $automationId)
     {
@@ -411,7 +411,7 @@ class SceneClient extends BaseClient
      * @param int $homeId 家庭ID
      * @param string $automationId 自动化ID
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function disableAutomation(int $homeId, string $automationId)
     {

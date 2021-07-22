@@ -21,7 +21,7 @@ class UserClient extends BaseClient
      * @param string $nickName
      * @param string $countryCode
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function saveUser(string $schema, string $userName, string $password, int $type, string $nickName='', string $countryCode='86')
     {
@@ -46,7 +46,7 @@ class UserClient extends BaseClient
      * @param int $pageNo
      * @param int $pageSize
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getUsers(string $schema, int $pageNo=1, int $pageSize=10)
     {
@@ -61,7 +61,7 @@ class UserClient extends BaseClient
      * 获取用户信息
      * @param string $uid
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getUserInfo(string $uid)
     {

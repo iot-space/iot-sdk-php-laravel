@@ -4,7 +4,7 @@ namespace IotSpace\Ys;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 use IotSpace\Exception\ErrorCode;
 use IotSpace\Support\HttpMethod;
 
@@ -18,7 +18,7 @@ class TokenClient extends BaseClient
     /**
      * 获取令牌
      * @return string
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getToken(): string
     {
@@ -32,11 +32,11 @@ class TokenClient extends BaseClient
         $key = $this->config['key'];
         $secret = $this->config['secret'];
         if(empty($key)){
-            throw new ClientException('缺少YS_KEY配置', ErrorCode::OPTIONS);
+            throw new IotException('缺少YS_KEY配置', ErrorCode::OPTIONS);
         }
 
         if(empty($secret)){
-            throw new ClientException('缺少YS_SECRET配置', ErrorCode::OPTIONS);
+            throw new IotException('缺少YS_SECRET配置', ErrorCode::OPTIONS);
         }
 
         $postData = [

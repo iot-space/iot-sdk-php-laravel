@@ -2,7 +2,7 @@
 
 namespace IotSpace\Ys;
 
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 
 /**
  * 人员信息管理
@@ -27,7 +27,7 @@ class PersonClient extends BaseClient
      * @param string $label
      * @param string $remarks
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function addPerson(string $personName, string $phoneNumber, string $validateType='',
                             array $extension=null, array $cards=null,
@@ -88,7 +88,7 @@ class PersonClient extends BaseClient
      * @param string $label
      * @param string $remarks
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function editPerson(int $personId, string $personName='', string $phoneNumber='', string $validateType='',
                              array $extension=null, array $cards=null,
@@ -142,7 +142,7 @@ class PersonClient extends BaseClient
      * 删除人员
      * @param string $ids 人员ID列表（多个以,隔开）
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function deletePerson(string $ids)
     {
@@ -165,7 +165,7 @@ class PersonClient extends BaseClient
      * @param string $personName
      * @param string $phoneNumber
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getPersons(int $pageNo=1, int $pageSize=10, int $personId=0, string $personName='', string $phoneNumber='')
     {
@@ -194,7 +194,7 @@ class PersonClient extends BaseClient
      * 获取人员详情
      * @param int $personId 人员ID
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     public function getPerson(int $personId)
     {

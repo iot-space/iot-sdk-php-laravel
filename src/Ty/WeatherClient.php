@@ -17,7 +17,7 @@ class WeatherClient extends BaseClient
      * @param string $lon 经度
      * @param string $lat 纬度
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getTodayWeather(string $lon, string $lat)
     {
@@ -33,7 +33,7 @@ class WeatherClient extends BaseClient
      * @param string $lon
      * @param string $lat
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getWeekWeather(string $lon, string $lat)
     {

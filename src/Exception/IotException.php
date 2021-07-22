@@ -5,7 +5,7 @@ namespace IotSpace\Exception;
 use Exception;
 use RuntimeException;
 
-abstract class IotException extends Exception
+class IotException extends Exception
 {
 
     /**
@@ -17,6 +17,11 @@ abstract class IotException extends Exception
      * @var string
      */
     protected $errorMessage;
+
+    /**
+     * @var mixed
+     */
+    protected $errorData;
 
     /**
      * @return string
@@ -56,10 +61,27 @@ abstract class IotException extends Exception
     }
 
     /**
-     * @codeCoverageIgnore
-     * @deprecated
+     * @return mixed
      */
-    public function setErrorType()
+    public function getErrorData()
     {
+        return $this->errorData;
     }
+
+    /**
+     * @param $errorData
+     */
+    public function setErrorData($errorData)
+    {
+        $this->errorData = $errorData;
+    }
+
+    public function __construct($errorMessage, $errorCode='', $errorData = null, $previous = null)
+    {
+        parent::__construct($errorMessage, 0, $previous);
+        $this->errorMessage = $errorMessage;
+        $this->errorCode    = $errorCode;
+        $this->errorData    = $errorData;
+    }
+
 }

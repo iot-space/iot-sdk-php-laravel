@@ -2,7 +2,7 @@
 
 namespace IotSpace;
 
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 use IotSpace\Ty\BaseClient;
 use IotSpace\Ty\DataClient;
 use IotSpace\Ty\DeviceClient;
@@ -59,6 +59,6 @@ class TyCloud
             return resolve($class);
         }
 
-        throw new ClientException("{$name} Not Found.");
+        throw new IotException("{$name} Not Found.");
     }
 }

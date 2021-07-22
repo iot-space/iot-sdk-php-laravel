@@ -4,7 +4,7 @@
 namespace IotSpace\Ys;
 
 use IotSpace\Support\ApiRequest;
-use IotSpace\Exception\ClientException;
+use IotSpace\Exception\IotException;
 use IotSpace\Exception\ErrorCode;
 use IotSpace\Support\HttpMethod;
 use Illuminate\Config\Repository;
@@ -61,7 +61,7 @@ abstract class BaseClient
      * @param bool $withToken
      * @param bool $withHeaders
      * @return mixed
-     * @throws ClientException
+     * @throws IotException
      */
     protected function getHttpRequest($url, array $postData, $method = HttpMethod::POST, bool $withToken=true, bool $withHeaders=true)
     {
@@ -78,8 +78,7 @@ abstract class BaseClient
         }
         $res = ApiRequest::httpRequest($method, $url, $options);
         if((int)$res['code'] !== 200){
-            $errorCode = $res['data']['errorCode'];
-            throw new ClientException($errorCode, ErrorCode::DATA);
+            throw new IotException($res['msg'], ErrorCode::YS, $res['data']);
         }
         $res = $res['data'];
         return $res;

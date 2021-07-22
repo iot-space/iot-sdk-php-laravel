@@ -20,7 +20,7 @@ class PairTokenClient extends BaseClient
      * @param string $homeId 家庭 ID，不填则为用户默认家庭
      * @param array $extension 扩展信息，配网类型是 BLE 时需传入设备 UUID
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function createParingToken(string $uid, string $paringType = ParingType::BLE, string $timeZone = 'Asia/Shanghai', string $homeId = '', array $extension = null)
     {
@@ -48,7 +48,7 @@ class PairTokenClient extends BaseClient
      * 轮询配网结果
      * @param string $token
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getParingDevices(string $token)
     {
@@ -64,7 +64,7 @@ class PairTokenClient extends BaseClient
      * @param string $deviceId
      * @param int $duration 网关发现时间  取值范围：0~3600 秒
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function enabledGatewaySubDiscovery(string $deviceId, int $duration = 100)
     {
@@ -79,7 +79,7 @@ class PairTokenClient extends BaseClient
      * @param string $deviceId 网关设备 ID
      * @param int $discoveryTime 网关发现子设备时间，精确到秒
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getGatewayParingSubDevices(string $deviceId, int $discoveryTime)
     {
@@ -94,7 +94,7 @@ class PairTokenClient extends BaseClient
      * 获取网关下的子设备列表
      * @param string $deviceId
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getGatewaySubDevices(string $deviceId)
     {

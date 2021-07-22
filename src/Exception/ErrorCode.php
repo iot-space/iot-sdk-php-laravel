@@ -10,7 +10,7 @@ class ErrorCode
      */
     const FAILED = '1001';
     /**
-     * 参数错误
+     * 配置参数错误
      */
     const OPTIONS = '1002';
     /**
@@ -18,7 +18,11 @@ class ErrorCode
      */
     const HTTP = '1003';
     /**
-     * 云接口数据错误
+     * 涂鸦云数据错误
      */
-    const DATA = '1004';
+    const TY = '1004';
+    /**
+     * 涂鸦云数据错误
+     */
+    const YS = '1005';
 }

@@ -17,7 +17,7 @@ class GeoClient extends BaseClient
      * @param string $longitude 经度
      * @param string $latitude 纬度
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getAddress(string $longitude, string $latitude)
     {
@@ -32,7 +32,7 @@ class GeoClient extends BaseClient
      * 正地址解析，地址转经纬度
      * @param string $address
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getLonLat(string $address)
     {
@@ -47,7 +47,7 @@ class GeoClient extends BaseClient
      * 根据IP地址获取地理位置
      * @param string $ip
      * @return mixed
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getIpLocation(string $ip)
     {

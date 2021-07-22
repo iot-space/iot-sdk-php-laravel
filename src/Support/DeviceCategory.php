@@ -5,9 +5,9 @@ namespace IotSpace\Support;
 class DeviceCategory
 {
     /**
-     * 人脸门禁
+     * 云门禁
      */
-    const FACE_DOOR = 'face_door';
+    const DOOR = 'door';
     /**
      * 摄像头
      */

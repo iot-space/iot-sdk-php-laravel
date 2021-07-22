@@ -16,7 +16,7 @@ class TokenClient extends BaseClient
     /**
      * 获取令牌
      * @return string
-     * @throws \IotSpace\Exception\ClientException
+     * @throws \IotSpace\Exception\IotException
      */
     public function getToken(): string
     {
