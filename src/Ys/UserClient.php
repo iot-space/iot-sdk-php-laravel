@@ -39,7 +39,7 @@ class UserClient extends BaseClient
                             string $isUnique = '1', string $isValidateFace = '1', string $validateFaceType='1',
                             string $label='',string $remarks='')
     {
-        $url = "/api/person/add";
+        $url = "/api/component/saas/person/add";
 
         $postData = [
             "personName"=>$personName,
@@ -100,7 +100,7 @@ class UserClient extends BaseClient
                              string $isUnique = '1', string $isValidateFace = '1', string $validateFaceType='1',
                              string $label='',string $remarks='')
     {
-        $url = "/api/person/add";
+        $url = "/api/component/saas/person/update";
 
         $postData = [
             "id"=>$id,
@@ -150,7 +150,7 @@ class UserClient extends BaseClient
      */
     public function deleteUser(string $ids)
     {
-        $url = "/api/person/delete";
+        $url = "/api/component/saas/person/delete";
 
         $postData = [
             "ids"=>$ids,
@@ -173,7 +173,7 @@ class UserClient extends BaseClient
      */
     public function getUsers(int $pageNo=1, int $pageSize=10, int $id=0, string $personName='', string $phoneNumber='')
     {
-        $url = "/api/person/list/page";
+        $url = "/api/component/saas/person/list/page";
 
         $postData = [
             "pageNo"=>$pageNo,
@@ -202,7 +202,7 @@ class UserClient extends BaseClient
      */
     public function getUser(int $id)
     {
-        $url = "/api/person/info";
+        $url = "/api/component/saas/person/info";
 
         $postData = [
             "id"=>$id

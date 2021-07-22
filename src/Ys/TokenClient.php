@@ -22,8 +22,7 @@ class TokenClient extends BaseClient
      */
     public function getToken(): string
     {
-//        $url = '/api/lapp/token/get';
-        $url = '/api/user/component-open/sso/oauth2/getEZAccessToken';
+        $url = '/api/lapp/token/get';
 
         if (Cache::has(self::CACHE_TOKEN_KEY)) {
             $token = Cache::get(self::CACHE_TOKEN_KEY);
