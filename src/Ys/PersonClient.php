@@ -2,11 +2,7 @@
 
 namespace IotSpace\Ys;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
 use IotSpace\Exception\ClientException;
-use IotSpace\Exception\ErrorCode;
-use IotSpace\Support\HttpMethod;
 
 /**
  * 人员信息管理
@@ -14,7 +10,7 @@ use IotSpace\Support\HttpMethod;
  * https://www.yuque.com/u1400669/kb/ngah3g
  * @package IotSpace\Ys
  */
-class UserClient extends BaseClient
+class PersonClient extends BaseClient
 {
     /**
      * 添加人员
@@ -33,7 +29,7 @@ class UserClient extends BaseClient
      * @return mixed
      * @throws ClientException
      */
-    public function addUser(string $personName, string $phoneNumber, string $validateType='',
+    public function addPerson(string $personName, string $phoneNumber, string $validateType='',
                             array $extension=null, array $cards=null,
                             string $faceImageUrl='', string $base64FaceImageFile='',
                             string $isUnique = '1', string $isValidateFace = '1', string $validateFaceType='1',
@@ -78,7 +74,7 @@ class UserClient extends BaseClient
 
     /**
      * 修改人员
-     * @param int $id 人员ID
+     * @param int $personId 人员ID
      * @param string $personName 姓名
      * @param string $phoneNumber 手机号
      * @param string $validateType 校验类型:1-手机号证件号重复性,2-工号重复性,3-人脸重复性,4-图片格式+大小+眼间距,多个以“,”分割,默认校验所有类型
@@ -94,7 +90,7 @@ class UserClient extends BaseClient
      * @return mixed
      * @throws ClientException
      */
-    public function editUser(int $id, string $personName='', string $phoneNumber='', string $validateType='',
+    public function editPerson(int $personId, string $personName='', string $phoneNumber='', string $validateType='',
                              array $extension=null, array $cards=null,
                              string $faceImageUrl='', string $base64FaceImageFile='',
                              string $isUnique = '1', string $isValidateFace = '1', string $validateFaceType='1',
@@ -103,7 +99,7 @@ class UserClient extends BaseClient
         $url = "/api/component/saas/person/update";
 
         $postData = [
-            "id"=>$id,
+            "id"=>$personId,
             "isUnique"=>$isUnique,
             "isValidateFace"=>$isValidateFace,
             "validateFaceType"=>$validateFaceType
@@ -148,7 +144,7 @@ class UserClient extends BaseClient
      * @return mixed
      * @throws ClientException
      */
-    public function deleteUser(string $ids)
+    public function deletePerson(string $ids)
     {
         $url = "/api/component/saas/person/delete";
 
@@ -165,13 +161,13 @@ class UserClient extends BaseClient
      * 获取人员列表
      * @param int $pageNo
      * @param int $pageSize
-     * @param int $id 人员ID
+     * @param int $personId 人员ID
      * @param string $personName
      * @param string $phoneNumber
      * @return mixed
      * @throws ClientException
      */
-    public function getUsers(int $pageNo=1, int $pageSize=10, int $id=0, string $personName='', string $phoneNumber='')
+    public function getPersons(int $pageNo=1, int $pageSize=10, int $personId=0, string $personName='', string $phoneNumber='')
     {
         $url = "/api/component/saas/person/list/page";
 
@@ -179,8 +175,8 @@ class UserClient extends BaseClient
             "pageNo"=>$pageNo,
             "pageSize"=>$pageSize
         ];
-        if($id>0){
-            $postData['id'] = $id;
+        if($personId>0){
+            $postData['id'] = $personId;
         }
         if(!empty($personName)){
             $postData['personName'] = $personName;
@@ -196,16 +192,16 @@ class UserClient extends BaseClient
 
     /**
      * 获取人员详情
-     * @param int $id 人员ID
+     * @param int $personId 人员ID
      * @return mixed
      * @throws ClientException
      */
-    public function getUser(int $id)
+    public function getPerson(int $personId)
     {
         $url = "/api/component/saas/person/info";
 
         $postData = [
-            "id"=>$id
+            "id"=>$personId
         ];
 
         $data = $this->getHttpRequest($url, $postData);
