@@ -193,7 +193,7 @@ class DeviceClient extends BaseClient
         $commands = json_encode($commands);
         $commands = '{"commands":'.$commands.'}';
 
-        $data = $this->getHttpRequest($url, HttpMethod::GET, true, $commands);
+        $data = $this->getHttpRequest($url, HttpMethod::POST, true, $commands);
 
         return $data;
     }
