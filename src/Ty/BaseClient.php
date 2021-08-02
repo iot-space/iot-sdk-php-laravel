@@ -72,7 +72,7 @@ abstract class BaseClient
         ];
 
         if($withToken){
-            $headers['access_token'] = $this->getToken();
+            $headers['access_token'] = $this->getCacheToken();
             $headers['Content-Type'] = 'application/json';
         }
 
