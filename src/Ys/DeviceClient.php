@@ -123,7 +123,7 @@ class DeviceClient extends BaseClient
     /**
      * 获取单个设备在线状态
      * @param string $deviceSerial
-     * @return mixed
+     * @return boolean
      * @throws IotException
      */
     public function getDeviceOnlineStatus(string $deviceSerial)

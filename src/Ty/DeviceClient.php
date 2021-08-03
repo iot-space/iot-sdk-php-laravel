@@ -3,6 +3,7 @@
 
 namespace IotSpace\Ty;
 
+use IotSpace\Exception\IotException;
 use IotSpace\Support\HttpMethod;
 
 /**
@@ -160,6 +161,19 @@ class DeviceClient extends BaseClient
         }
 
         return array_column($data, 'value', 'code');
+    }
+
+    /**
+     * 获取单个设备在线状态
+     * @param string $deviceId
+     * @return boolean
+     * @throws IotException
+     */
+    public function getDeviceOnlineStatus(string $deviceId)
+    {
+        $data = $this->getDevice($deviceId);
+
+        return (bool)$data['online'];
     }
 
     /**
