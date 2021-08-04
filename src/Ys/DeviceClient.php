@@ -3,7 +3,6 @@
 namespace IotSpace\Ys;
 
 use IotSpace\Exception\IotException;
-
 /**
  * 设备管理
  * https://open.ys7.com/saas/openapi/zh/base/device/explain.html
@@ -110,6 +109,25 @@ class DeviceClient extends BaseClient
     public function getDevice(string $deviceSerial)
     {
         $url = "/api/lapp/device/info";
+
+        $postData = [
+            "deviceSerial" => $deviceSerial
+        ];
+
+        $data = $this->getHttpRequest($url, $postData);
+
+        return $data;
+    }
+
+    /**
+     * 获取设备状态信息
+     * @param string $deviceSerial
+     * @return mixed
+     * @throws IotException
+     */
+    public function getDeviceStatus(string $deviceSerial)
+    {
+        $url = "/lapp/device/status/get";
 
         $postData = [
             "deviceSerial" => $deviceSerial
