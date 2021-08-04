@@ -127,7 +127,7 @@ class DeviceClient extends BaseClient
      */
     public function getDeviceStatus(string $deviceSerial)
     {
-        $url = "/lapp/device/status/get";
+        $url = "/api/lapp/device/status/get";
 
         $postData = [
             "deviceSerial" => $deviceSerial
