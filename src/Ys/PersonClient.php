@@ -59,9 +59,10 @@ class PersonClient extends BaseClient
         if(!empty($remarks)){
             $postData['remarks'] = $remarks;
         }
-
         if(!empty($extension)){
-            $postData['extenssion'] = $extension;
+            foreach ($extension as $k=>$v){
+                $postData['extension.'.$k] = $v;
+            }
         }
         if(!empty($cards)){
             $postData['cards'] = $cards;
@@ -127,7 +128,9 @@ class PersonClient extends BaseClient
         }
 
         if(!empty($extension)){
-            $postData['extenssion'] = $extension;
+            foreach ($extension as $k=>$v){
+                $postData['extension.'.$k] = $v;
+            }
         }
         if(!empty($cards)){
             $postData['cards'] = $cards;
