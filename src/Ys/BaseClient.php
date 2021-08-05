@@ -92,7 +92,6 @@ abstract class BaseClient
         if((int)$res['code'] !== 200){
             throw new IotException($res['msg'], ErrorCode::YS, $res['data']);
         }
-        $res = $res['data'];
         return $res;
     }
 }
