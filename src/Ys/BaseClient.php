@@ -90,7 +90,7 @@ abstract class BaseClient
             'createtime'=>date('Y-m-d H:i:s'),
         ]);
         if((int)$res['code'] !== 200){
-            throw new IotException($res['msg'], ErrorCode::YS, $res['data']);
+            throw new IotException($res['msg'], ErrorCode::YS, $res['data']??'');
         }
         return $res['data']??true;
     }
