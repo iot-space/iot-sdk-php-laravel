@@ -61,7 +61,7 @@ class PersonClient extends BaseClient
         }
 
         if(!empty($extension)){
-            $postData['extension'] = $extension;
+            $postData['extenssion'] = $extension;
         }
         if(!empty($cards)){
             $postData['cards'] = $cards;
@@ -127,7 +127,7 @@ class PersonClient extends BaseClient
         }
 
         if(!empty($extension)){
-            $postData['extension'] = $extension;
+            $postData['extenssion'] = $extension;
         }
         if(!empty($cards)){
             $postData['cards'] = $cards;
