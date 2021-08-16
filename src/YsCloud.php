@@ -7,6 +7,7 @@ use IotSpace\Ys\BaseClient;
 use IotSpace\Ys\DeviceClient;
 use IotSpace\Ys\DoorClient;
 use IotSpace\Ys\PersonClient;
+use IotSpace\Ys\SaasClient;
 use IotSpace\Ys\TokenClient;
 
 
@@ -17,6 +18,7 @@ use IotSpace\Ys\TokenClient;
  * @method static PersonClient PersonClient()
  * @method static DoorClient DoorClient()
  * @method static DeviceClient DeviceClient()
+ * @method static SaasClient SaasClient()
  *
  * @package IotSpace
  */

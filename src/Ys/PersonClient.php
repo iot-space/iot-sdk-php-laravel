@@ -5,7 +5,7 @@ namespace IotSpace\Ys;
 use IotSpace\Exception\IotException;
 
 /**
- * 人员信息管理
+ * Saas人员信息管理
  * https://open.ys7.com/saas/openapi/zh/base/person/person_explain.html
  * https://www.yuque.com/u1400669/kb/ngah3g
  * @package IotSpace\Ys

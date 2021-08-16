@@ -5,7 +5,7 @@ namespace IotSpace\Ys;
 use IotSpace\Exception\IotException;
 
 /**
- * 云门禁
+ * Saas云门禁
  * https://open.ys7.com/saas/openapi/zh/cloudkey/
  * @package IotSpace\Ys
  */
