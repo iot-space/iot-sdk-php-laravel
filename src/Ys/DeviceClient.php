@@ -151,4 +151,23 @@ class DeviceClient extends BaseClient
         return $data;
     }
 
+    /**
+     * 根据设备序列号查询设备能力集
+     * @param string $deviceSerial
+     * @return bool|mixed
+     * @throws IotException
+     */
+    public function getDeviceCapacity(string $deviceSerial)
+    {
+        $url = "/api/lapp/device/capacity";
+
+        $postData = [
+            "deviceSerial" => $deviceSerial
+        ];
+
+        $data = $this->getHttpRequest($url, $postData);
+
+        return $data;
+    }
+
 }
