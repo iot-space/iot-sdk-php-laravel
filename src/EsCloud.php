@@ -12,7 +12,7 @@ use IotSpace\Ys\TokenClient;
 
 
 /**
- * 萤石开放平台SDK
+ * 萤石SaaS开发服务后台SDK
  *
  * @method static TokenClient TokenClient()
  * @method static PersonClient PersonClient()
@@ -22,7 +22,7 @@ use IotSpace\Ys\TokenClient;
  *
  * @package IotSpace
  */
-class YsCloud
+class EsCloud
 {
     private function __construct()
     {
@@ -42,7 +42,7 @@ class YsCloud
         /**
          * @var BaseClient
          */
-        $class = "IotSpace\\Ys\\{$name}";
+        $class = "IotSpace\\Es\\{$name}";
 
         if (class_exists($class)) {
             return resolve($class);
