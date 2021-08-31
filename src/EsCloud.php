@@ -3,12 +3,11 @@
 namespace IotSpace;
 
 use IotSpace\Exception\IotException;
-use IotSpace\Ys\BaseClient;
-use IotSpace\Ys\DeviceClient;
-use IotSpace\Ys\DoorClient;
-use IotSpace\Ys\PersonClient;
-use IotSpace\Ys\SaasClient;
-use IotSpace\Ys\TokenClient;
+use IotSpace\Es\BaseClient;
+use IotSpace\Es\DeviceClient;
+use IotSpace\Es\DoorClient;
+use IotSpace\Es\PersonClient;
+use IotSpace\Es\TokenClient;
 
 
 /**
@@ -18,7 +17,6 @@ use IotSpace\Ys\TokenClient;
  * @method static PersonClient PersonClient()
  * @method static DoorClient DoorClient()
  * @method static DeviceClient DeviceClient()
- * @method static SaasClient SaasClient()
  *
  * @package IotSpace
  */
