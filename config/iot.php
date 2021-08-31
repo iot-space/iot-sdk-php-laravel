@@ -10,11 +10,9 @@ return [
     'ys' => [
         'key' => env('YS_KEY'),
         'secret' => env('YS_SECRET'),
-        'api' => env('YS_API', 'https://open.ys7.com')
-    ],
-    'es' => [
-        'key' => env('ES_KEY'),
-        'secret' => env('ES_SECRET'),
-        'api' => env('ES_API', 'https://esopen.ys7.com')
+        'api' => env('YS_API', 'https://open.ys7.com'),
+        'es_key' => env('ES_KEY'),
+        'es_secret' => env('ES_SECRET'),
+        'es_api' => env('ES_API', 'https://esopen.ys7.com')
     ]
 ];

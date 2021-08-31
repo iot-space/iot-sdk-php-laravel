@@ -48,7 +48,7 @@ class TokenClient extends BaseClient
 
         $accessToken = $data['accessToken'];
         $expireTime = $data['expireTime']; //Token过期时间  毫秒时间戳
-        $this->accessToken = $accessToken;
+
         $expireDateTime = Carbon::createFromTimestampMs($expireTime);
 
         Cache::put(self::CACHE_TOKEN_KEY, $accessToken, $expireDateTime);

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace IotSpace\Es;
+namespace IotSpace\Ys;
 
 use IotSpace\Support\ApiRequest;
 use IotSpace\Exception\IotException;
@@ -12,37 +12,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use IotSpace\Support\Platform;
 
-abstract class BaseClient
+abstract class EsBaseClient extends BaseClient
 {
-    const CACHE_TOKEN_KEY = 'ES_ACCESS_TOKEN';
-
-    /**
-     * @var Illuminate\Foundation\Application
-     */
-    protected $app;
-    /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * 构造函数 自动注入 Laravel app实例
-     * @param \Illuminate\Foundation\Application $app
-     */
-    public function __construct(\Illuminate\Foundation\Application $app)
-    {
-        $this->config = $app['config']->get('iot.es');
-    }
-
-    protected function getCacheToken()
-    {
-        if(Cache::has(self::CACHE_TOKEN_KEY)){
-            return Cache::get(self::CACHE_TOKEN_KEY);
-        }else{
-            $token = app(TokenClient::class)->getToken();
-            return $token;
-        }
-    }
+    const ES_CACHE_TOKEN_KEY = 'ES_ACCESS_TOKEN';
 
     protected function getHeaders()
     {
@@ -65,7 +37,7 @@ abstract class BaseClient
      */
     protected function getHttpRequest($url, array $postData, $method = HttpMethod::POST, bool $withToken=true, bool $withHeaders=true)
     {
-        $url = $this->config['api'].$url;
+        $url = $this->config['es_api'].$url;
         $options = [];
         if($withHeaders){
             $options['headers'] = $this->getHeaders();
@@ -74,7 +46,7 @@ abstract class BaseClient
             $postData['accessToken'] = $this->getCacheToken();
         }
         if($postData){
-            $options['form_params'] = $postData;
+            $options['body'] = json_encode($postData, JSON_UNESCAPED_UNICODE);
         }
         $res = ApiRequest::httpRequest($method, $url, $options);
         DB::table('iot_log')->insert([
