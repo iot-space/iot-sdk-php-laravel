@@ -212,4 +212,35 @@ class PersonClient extends BaseClient
         return $data;
     }
 
+    /***
+     * 该接口用于对一张图片中的人脸进行检测分析
+     * @param string $image 待分析的图片数据(base64 编码格式),图片数据大小最大2M,尺寸最大: 1280*1280
+     * @param string $operation 可以是 none 或者由逗号分割的属性列表。
+     * 可选: gender-开启性别检测, age-开启年龄检测, glass-开启是否戴眼镜检测，faceScore:人脸评分，expression：微笑检测
+     * 默认均会检测人脸位置,若检测成功则查询时faceRect均会返回，若指定了其他项则检测查询时返回对应的结果值。
+     * @param int $dataType 数据类型(0：图片URL; 1:base64 编码的二进制图片数据；)
+     * @param array $rol 检测区域矩形框：{"x":0.5, "y":0, "w":0.5, "h":1.0}
+     * @return bool|mixed
+     * @throws IotException
+     */
+    public function faceAnalysis(string $image, string $operation = null, int $dataType = 0, array $rol = null)
+    {
+        $url = "/api/lapp/intelligence/face/analysis/detect";
+
+        $postData = [
+            "image"     => $image,
+            "operation" => $operation,
+            "dataType"  => $dataType,
+        ];
+        if (!empty($operation)) {
+            $postData['operation'] = $operation;
+        }
+        if (!empty($rol)) {
+            $postData['rol'] = json_encode($rol);
+        }
+        $data = $this->getHttpRequest($url, $postData);
+
+        return $data;
+    }
+
 }
