@@ -4,6 +4,8 @@ namespace IotSpace\Ys;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use IotSpace\Exception\ErrorCode;
+use IotSpace\Exception\IotException;
 use IotSpace\Support\HttpMethod;
 
 /**
@@ -18,29 +20,40 @@ class EsTokenClient extends EsBaseClient
      * @return string
      * @throws \IotSpace\Exception\IotException
      */
-    public function getEsToken(): string
+    public function getToken(): string
     {
         if (Cache::has(self::ES_CACHE_TOKEN_KEY)) {
             $token = Cache::get(self::ES_CACHE_TOKEN_KEY);
             return $token;
         }
 
-        $url = '/api/user/component-open/sso/oauth2/getEZAccessToken';
+        $url = '/api/user/open-app/auth/gettoken';
+
+        $key = $this->config['key'];
+        $secret = $this->config['secret'];
+        if(empty($key)){
+            throw new IotException('缺少YS_KEY配置', ErrorCode::OPTIONS);
+        }
+
+        if(empty($secret)){
+            throw new IotException('缺少YS_SECRET配置', ErrorCode::OPTIONS);
+        }
 
         $postData = [
-            'accessToken' => $this->getCacheToken()
+            'appKey' => $key,
+            'appSecret' => $secret
         ];
 
         $data = $this->getHttpRequest($url, $postData, HttpMethod::POST, false, true);
 
-        $ezOpenAccessToken = $data['ezOpenAccessToken'];
-        $expireTime = $data['expireTime']; //Token过期时间  毫秒时间戳
+        $accessToken = $data['accessToken'];
+        $expiresIn = $data['expiresIn']; //Token过期时间  毫秒时间戳
 
-        $expireDateTime = Carbon::createFromTimestampMs($expireTime);
+        $expireDateTime = Carbon::now()->addSeconds($expiresIn);
 
-        Cache::put(self::ES_CACHE_TOKEN_KEY, $ezOpenAccessToken, $expireDateTime);
+        Cache::put(self::ES_CACHE_TOKEN_KEY, $accessToken, $expireDateTime);
 
-        return $ezOpenAccessToken;
+        return $accessToken;
     }
 
 }

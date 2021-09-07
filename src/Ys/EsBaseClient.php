@@ -23,7 +23,16 @@ abstract class EsBaseClient extends BaseClient
         ];
 
         return $headers;
+    }
 
+    protected function getCacheToken()
+    {
+        if(Cache::has(self::ES_CACHE_TOKEN_KEY)){
+            return Cache::get(self::ES_CACHE_TOKEN_KEY);
+        }else{
+            $token = app(EsTokenClient::class)->getToken();
+            return $token;
+        }
     }
 
     /**
