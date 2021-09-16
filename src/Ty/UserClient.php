@@ -6,34 +6,29 @@ namespace IotSpace\Ty;
 use IotSpace\Support\HttpMethod;
 
 /**
- * 用户管理
- * https://developer.tuya.com/cn/docs/cloud/user-management?id=K95ztzvgwnshy
+ * 行业通用用户管理
+ * https://developer.tuya.com/cn/docs/cloud/industrial-general-user-management?id=Kaiuyafw5nrku
  * @package IotSpace\Ty
  */
 class UserClient extends BaseClient
 {
     /**
-     * 同步用户
-     * @param string $schema
-     * @param string $userName
-     * @param string $password 用户密码，如需在涂鸦 OEM App 中直接使用，OEM App 当前仅支持手机号和邮箱地址，且密码 hash 规则为 MD5 算法
-     * @param int $type 用户名类型。 1：手机号 2：邮箱号 3：其他 默认值：3。
-     * @param string $nickName
+     * 注册用户
+     * @param string $username
+     * @param string $password 密码，一般建议用 SHA256 对密码加密然后转小写
      * @param string $countryCode
      * @return mixed
      * @throws \IotSpace\Exception\IotException
      */
-    public function saveUser(string $schema, string $userName, string $password, int $type, string $nickName='', string $countryCode='86')
+    public function createUser(string $username, string $password, string $countryCode='86')
     {
-        $url = "/v1.0/apps/{$schema}/user";
+        $url = "/v1.0/iot-02/users";
 
-        $body = json_encode([
+        $body = [
             "country_code"=>$countryCode,
-            "username"=>$userName,
-            "password"=>$password,
-            "username_type"=>$type,
-            "nick_name"=>$nickName
-        ]);
+            "username"=>$username,
+            "password"=>$password
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
@@ -41,16 +36,15 @@ class UserClient extends BaseClient
     }
 
     /**
-     * 获取用户列表
-     * @param string $schema
-     * @param int $pageNo
+     * 分页查询用户列表
      * @param int $pageSize
+     * @param string $lastRowKey 每页最后一条数据行号
      * @return mixed
      * @throws \IotSpace\Exception\IotException
      */
-    public function getUsers(string $schema, int $pageNo=1, int $pageSize=10)
+    public function getUsers(int $pageSize=10, string $lastRowKey='')
     {
-        $url = "/v2.0/apps/{$schema}/users?page_no={$pageNo}&page_size={$pageSize}";
+        $url = "/v1.0/iot-02/users?last_row_key={$lastRowKey}&page_size={$pageSize}";
 
         $data = $this->getHttpRequest($url, HttpMethod::GET, true);
 
@@ -58,14 +52,98 @@ class UserClient extends BaseClient
     }
 
     /**
-     * 获取用户信息
+     * 修改用户密码
+     * @param string $uid
+     * @param string $oldPassword 老的密码，一般建议用 SHA256 对密码加密然后转小写
+     * @param string $newPassword 新的密码，一般建议用 SHA256 对密码加密然后转小写
+     * @return mixed
+     * @throws \IotSpace\Exception\IotException
+     */
+    public function updateUserPassword(string $uid, string $oldPassword, string $newPassword)
+    {
+        $url = "/v1.0/iot-02/users/{$uid}";
+
+        $body = [
+            "user_id"=>$uid,
+            "old_password"=>$oldPassword,
+            "new_password"=>$newPassword
+        ];
+
+        $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
+
+        return $data;
+    }
+
+    /**
+     * 重置用户密码
+     * @param string $username
+     * @param string $newPassword 新密码，一般建议用 SHA256 对密码加密然后转小写
+     * @return mixed
+     * @throws \IotSpace\Exception\IotException
+     */
+    public function resetUserPassword(string $username, string $newPassword)
+    {
+        $url = "/v1.0/iot-02/users/reset-password";
+
+        $body = [
+            "username"=>$username,
+            "new_password"=>$newPassword
+        ];
+
+        $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
+
+        return $data;
+    }
+
+    /**
+     * 修改用户基本信息
+     * @param string $uid
+     * @param string $username
+     * @param string $nickname
+     * @return mixed
+     * @throws \IotSpace\Exception\IotException
+     */
+    public function updateUser(string $uid, string $username='', string $nickname='')
+    {
+        $url = "/v1.0/iot-02/users/{$uid}";
+
+        $body = [];
+        if(!empty($username)){
+            $body['user_name'] = $username;
+        }
+        if(!empty($nickname)){
+            $body['user_nick_name'] = $nickname;
+        }
+
+        $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
+
+        return $data;
+    }
+
+    /**
+     * 删除用户
      * @param string $uid
      * @return mixed
      * @throws \IotSpace\Exception\IotException
      */
-    public function getUserInfo(string $uid)
+    public function deleteUser(string $uid)
     {
-        $url = "/v1.0/users/{$uid}/infos";
+        $url = "/v1.0/iot-02/users/{$uid}";
+
+        $data = $this->getHttpRequest($url, HttpMethod::DELETE, true);
+
+        return $data;
+    }
+
+    /**
+     * 删除用户
+     * @param string $uid
+     * @return mixed
+     * @throws \IotSpace\Exception\IotException
+     */
+    public function getUser(string $uid)
+    {
+        $url = "/v1.0/iot-02/users/{$uid}";
 
         $data = $this->getHttpRequest($url, HttpMethod::GET, true);
 

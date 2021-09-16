@@ -73,11 +73,11 @@ class SceneClient extends BaseClient
     {
         $url = "/v1.0/homes/{$homeId}/scenes";
 
-        $body = json_encode([
+        $body = [
             "name"=>$name,
             "background"=>$background,
             "actions"=>$actions
-        ], JSON_UNESCAPED_UNICODE);
+        ];
 
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
@@ -99,11 +99,11 @@ class SceneClient extends BaseClient
     {
         $url = "/v1.0/homes/{$homeId}/scenes/{$sceneId}";
 
-        $body = json_encode([
+        $body = [
             "name"=>$name,
             "background"=>$background,
             "actions"=>$actions
-        ], JSON_UNESCAPED_UNICODE);
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
 
@@ -138,10 +138,10 @@ class SceneClient extends BaseClient
     {
         $url = "/v1.0/devices/{$deviceId}/scenes/{$sceneId}";
 
-        $body = json_encode([
+        $body = [
             "code"=>$code,
             "value"=>$value
-        ], JSON_UNESCAPED_UNICODE);
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
@@ -160,9 +160,9 @@ class SceneClient extends BaseClient
     {
         $url = "/v1.0/devices/{$deviceId}/scenes/{$sceneId}";
 
-        $body = json_encode([
+        $body = [
             "code"=>$code
-        ], JSON_UNESCAPED_UNICODE);
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::DELETE, true, $body);
 
@@ -214,7 +214,7 @@ class SceneClient extends BaseClient
         if(!empty($preconditions)){
             $postData['preconditions'] = $preconditions;
         }
-        $body = json_encode($postData, JSON_UNESCAPED_UNICODE);
+        $body = $postData;
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
@@ -252,7 +252,7 @@ class SceneClient extends BaseClient
         if(!empty($preconditions)){
             $postData['preconditions'] = $preconditions;
         }
-        $body = json_encode($postData, JSON_UNESCAPED_UNICODE);
+        $body = $postData;
 
         $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
 
@@ -320,7 +320,7 @@ class SceneClient extends BaseClient
         $postData = [
             "conditions"=>$conditions
         ];
-        $body = json_encode($postData, JSON_UNESCAPED_UNICODE);
+        $body = $postData;
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 

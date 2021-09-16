@@ -37,7 +37,7 @@ class PairTokenClient extends BaseClient
         if ($extension) {
             $paringData['extension'] = $extension;
         }
-        $body = json_encode($paringData, JSON_UNESCAPED_UNICODE);
+        $body = $paringData;
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 

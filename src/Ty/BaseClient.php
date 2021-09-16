@@ -98,7 +98,7 @@ abstract class BaseClient
             'headers' => $headers
         ];
         if($body){
-            $options['body'] = $body;
+            $options['body'] = json_encode($body, JSON_UNESCAPED_UNICODE);
         }
         $res = ApiRequest::httpRequest($method, $url, $options);
         DB::table('iot_log')->insert([

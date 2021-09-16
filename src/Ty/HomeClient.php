@@ -33,11 +33,11 @@ class HomeClient extends BaseClient
         if(!empty($lon)){
             $home['lon'] = $lon;
         }
-        $body = json_encode([
+        $body = [
             "uid" => $uid,
             "home" => $home,
             "rooms" => $rooms
-        ]);
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
@@ -54,9 +54,7 @@ class HomeClient extends BaseClient
     {
         $url = "/v1.0/homes/{$homeId}";
 
-        $body = json_encode($home);
-
-        $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
+        $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $home);
 
         return $data;
     }
@@ -136,7 +134,7 @@ class HomeClient extends BaseClient
     {
         $url = "/v1.0/homes/{$homeId}/members";
 
-        $body = json_encode([
+        $body = [
             "app_schema"=>$schema,
             "member"=>[
                 "country_code"=>$countryCode,
@@ -144,7 +142,7 @@ class HomeClient extends BaseClient
                 "admin"=>$isAdmin,
                 "name"=>$name
             ]
-        ], JSON_UNESCAPED_UNICODE);
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::GET, true, $body);
 
@@ -178,9 +176,9 @@ class HomeClient extends BaseClient
     public function setHomeMember(int $homeId, string $uid, bool $isAdmin)
     {
         $url = "/v1.0/homes/{$homeId}/members/{$uid}";
-        $body = json_encode([
+        $body = [
             "admin"=>$isAdmin
-        ], JSON_UNESCAPED_UNICODE);
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
 

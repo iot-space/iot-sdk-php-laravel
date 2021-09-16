@@ -7,7 +7,7 @@ use IotSpace\Exception\IotException;
 use IotSpace\Support\HttpMethod;
 
 /**
- * 设备控制、管理
+ * 全屋智能设备管理
  * https://developer.tuya.com/cn/docs/cloud/smart-home-devices-management?id=Kainejcoo5nwr
  * @package IotSpace\Ty
  */

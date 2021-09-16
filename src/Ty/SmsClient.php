@@ -25,12 +25,12 @@ class SmsClient extends BaseClient
     {
         $url = "/v1.0/iot-03/msg-templates/sms";
 
-        $body = json_encode([
+        $body = [
             "name"=>$name,
             "content"=>$content,
             "remark"=>$remark,
             "type"=>$type
-        ], JSON_UNESCAPED_UNICODE);
+        ];
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
@@ -94,7 +94,7 @@ class SmsClient extends BaseClient
         if(!empty($signName)){
             $msgData['sign_name'] = $signName;
         }
-        $body = json_encode($msgData, JSON_UNESCAPED_UNICODE);
+        $body = $msgData;
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 

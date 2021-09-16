@@ -39,7 +39,7 @@ class TimeClient extends BaseClient
             $postData['alias_name'] = $aliasName;
         }
 
-        $body = json_encode($postData, JSON_UNESCAPED_UNICODE);
+        $body = $postData;
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
@@ -74,7 +74,7 @@ class TimeClient extends BaseClient
             $postData['alias_name'] = $aliasName;
         }
 
-        $body = json_encode($postData, JSON_UNESCAPED_UNICODE);
+        $body = $postData;
 
         $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
 
@@ -98,7 +98,7 @@ class TimeClient extends BaseClient
             "value" => $status
         ];
 
-        $body = json_encode($postData, JSON_UNESCAPED_UNICODE);
+        $body = $postData;
 
         $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
 
