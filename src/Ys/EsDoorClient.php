@@ -140,5 +140,30 @@ class EsDoorClient extends EsBaseClient
 
         return $data;
     }
+    
+    /***
+     * 门禁状态分页查询
+     * @param string $deviceSerial 设备序列号
+     * @param int $deviceType 设备类型:1-门禁,2-智能锁,空-所有
+     * @param int $pageNo
+     * @param int $pageSize
+     * @return mixed
+     * @throws IotException
+     */
+    public function getDoorStatus(string $deviceSerial, $deviceType = 1, int $pageNo = 1, int $pageSize = 10)
+    {
+        $url = "/api/acs/list/page";
+
+        $postData = [
+            "deviceSerial" => $deviceSerial,
+            "deviceType"   => $deviceType,
+            "pageNo"       => $pageNo,
+            "pageSize"     => $pageSize
+        ];
+
+        $data = $this->getHttpRequest($url, $postData);
+
+        return $data[0];
+    }
 
 }
