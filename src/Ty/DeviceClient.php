@@ -204,10 +204,10 @@ class DeviceClient extends BaseClient
     public function executeDeviceCommands(string $deviceId, array $commands)
     {
         $url = "/v1.0/devices/{$deviceId}/commands";
-        $commands = json_encode($commands);
-        $commands = '{"commands":'.$commands.'}';
 
-        $data = $this->getHttpRequest($url, HttpMethod::POST, true, $commands);
+        $body['commands'] = $commands;
+
+        $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
         return $data;
     }
