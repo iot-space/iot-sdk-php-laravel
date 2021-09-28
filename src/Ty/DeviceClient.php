@@ -206,9 +206,9 @@ class DeviceClient extends BaseClient
         $url = "/v1.0/devices/{$deviceId}/commands";
 
         if (empty($commands[0])) {
-            $body['commands'] = $commands;
-        } else {
             $body['commands'] = [$commands];
+        } else {
+            $body['commands'] = $commands;
         }
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
