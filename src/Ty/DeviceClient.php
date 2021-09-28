@@ -195,7 +195,24 @@ class DeviceClient extends BaseClient
     }
 
     /**
-     * 下发设备指令
+     * 下发设备单个指令
+     * @param string $deviceId
+     * @param array $commands
+     * @return mixed
+     * @throws \IotSpace\Exception\IotException
+     */
+    public function executeDeviceCommand(string $deviceId, array $command)
+    {
+        $url = "/v1.0/devices/{$deviceId}/commands";
+
+        $body['commands'] = [$command];
+
+        $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
+
+        return $data;
+    }
+    /**
+     * 下发设备多个指令
      * @param string $deviceId
      * @param array $commands
      * @return mixed
@@ -205,11 +222,10 @@ class DeviceClient extends BaseClient
     {
         $url = "/v1.0/devices/{$deviceId}/commands";
 
-        $body['commands'] = [$commands];
+        $body['commands'] = $commands;
 
         $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
 
         return $data;
     }
-
 }
