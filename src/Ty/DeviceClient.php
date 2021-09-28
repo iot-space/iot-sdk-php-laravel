@@ -205,7 +205,7 @@ class DeviceClient extends BaseClient
     {
         $url = "/v1.0/devices/{$deviceId}/commands";
 
-        if (count($commands) > 1) {
+        if (empty($commands[0])) {
             $body['commands'] = $commands;
         } else {
             $body['commands'] = [$commands];
