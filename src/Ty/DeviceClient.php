@@ -214,4 +214,67 @@ class DeviceClient extends BaseClient
 
         return $data;
     }
+
+    /**
+     * 创建群组
+     * https://developer.tuya.com/cn/docs/cloud/device-group?id=K9ha8fccs8pp4#title-22-%E5%88%9B%E5%BB%BA%E7%BE%A4%E7%BB%84%E5%88%97%E8%A1%A8
+     * @param string $uid
+     * @param string $name 群组名称
+     * @param string $pid 产品 ID
+     * @param string $homeId
+     * @param array $devices 设备,格式：["devo537878w7", "devo732878w7"]
+     * @return mixed
+     * @throws IotException
+     */
+    public function createDeviceGroup(string $uid, string $name, string $pid, string $homeId, array $devices)
+    {
+        $url = "/v1.0/device-groups";
+
+        $body = [
+            "uid"=>$uid,
+            "name"=>$name,
+            "pid"=>$pid,
+            "owner_id"=>$homeId,
+            "device_list"=>$devices
+        ];
+        $data = $this->getHttpRequest($url, HttpMethod::POST, true, $body);
+
+        return $data;
+    }
+
+    /**
+     * 更新群组
+     * @param string $groupId
+     * @param string $name
+     * @param array $devices
+     * @return mixed
+     * @throws IotException
+     */
+    public function updateDeviceGroup(string $groupId,string $name, array $devices)
+    {
+        $url = "/v1.0/device-groups/{$groupId}";
+
+        $body = [
+            "name"=>$name,
+            "device_list"=>$devices
+        ];
+        $data = $this->getHttpRequest($url, HttpMethod::PUT, true, $body);
+
+        return $data;
+    }
+
+    /**
+     * 删除群组
+     * @param string $groupId
+     * @return mixed
+     * @throws IotException
+     */
+    public function deleteDeviceGroup(string $groupId)
+    {
+        $url = "/v1.0/device-groups/{$groupId}";
+
+        $data = $this->getHttpRequest($url, HttpMethod::DELETE, true);
+
+        return $data;
+    }
 }
