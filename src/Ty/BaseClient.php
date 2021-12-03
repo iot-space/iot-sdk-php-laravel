@@ -122,16 +122,18 @@ abstract class BaseClient
 
     /***
      * 签名机制 -- 签名字符串
-     * @param string $method
      * @param string $url
-     * @param string $body
-     * @return mixed
+     * @param string $method
+     * @param null $body
+     * @return string
      */
-    protected function getStringToSign(string $url, string $method, string $body = null)
+    protected function getStringToSign(string $url, string $method, $body = null)
     {
         $method = strtoupper($method);
         if (empty($body)) {
             $body = '';
+        } elseif (is_array($body)) {
+            $body = json_encode($body, JSON_UNESCAPED_UNICODE);
         }
         $contentSha256 = hash("sha256", $body);
         $headersStr    = '';
